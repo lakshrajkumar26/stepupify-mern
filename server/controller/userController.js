@@ -41,7 +41,7 @@ const loginUser = async (req,res) => {
         if(!isPasswordCorrect){
             return res.status(400).json({message:"Invalid password"});
         }
-        const token = jwt.sign({userId:user._id},process.env.JWT_SECRET,{expiresIn:"1h"});
+        const token = jwt.sign({userId:user._id , role:user.role , isAdmin:user.isAdmin},process.env.JWT_SECRET,{expiresIn:"1h"});
         res.setHeader("Authorization", `Bearer ${token}`);
 
         res.status(200).json({message:"User logged in successfully",token}); 
@@ -61,4 +61,4 @@ const getProfile = async (req, res) => {
     }
   };
 
-module.exports = {registerUser,loginUser, getProfile}
+module.exports = {registerUser, loginUser, getProfile}
