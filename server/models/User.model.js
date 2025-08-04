@@ -23,7 +23,29 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["user", "admin"],
         default: "user"
-    }
+    },
+    mobile: {
+        type: String,
+    },
+    address: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Addresses",
+    }],
+    paymentInformation: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "PaymentInformation",
+    }],
+    ratings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Ratings",
+    }],
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Reviews",
+    }],
+    // cart: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    // }]
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
